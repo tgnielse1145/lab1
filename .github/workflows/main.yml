@@ -17,7 +17,7 @@ jobs:
           path: ${{github.workspace}}/source
 
 
-      - name: Checkout pico-sdk/develop
+      - name: Checkout pico-sdk/master
         uses: actions/checkout@v2
         with:
             repository: raspberrypi/pico-sdk
