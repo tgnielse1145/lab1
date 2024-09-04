@@ -1,4 +1,4 @@
-name: Build
+name: CMake
 on: [push, pull_request]
 
 jobs:
@@ -35,7 +35,8 @@ jobs:
       #  run: git submodule update --init
 
       - name: Say hello
-        working-directory: ${{github.workspace}}
+        shell: bash
+        working-directory: ${{github.workspace}}/source
         run: |
             ls
             test ! -f hello.txt
@@ -45,16 +46,16 @@ jobs:
             make hello.txt
             test -f hello.txt
 
-      - name: Compile
+      - name: Test Compile
         shell: bash
-        working-directory: ${{github.workspace}}
+        working-directory: ${{github.workspace}}/source
         run: |
             test ! -f firmware.elf
-            PICO_TOOLCHAIN_PATH=../pico-sdk make
+            PICO_TOOLCHAIN_PATH=${{ steps.arm-none-eabi-gcc-action.outputs.path }}/.. make
             test -f firmware.elf
-      - name: Clean
+      - name: Test Clean
         shell: bash
-        working-directory: ${{github.workspace}}
+        working-directory: ${{github.workspace}}/source
         run: |
             make clean
             test ! -f hello.txt
