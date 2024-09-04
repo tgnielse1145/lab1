@@ -29,8 +29,11 @@ all: firmware.elf
 %.elf: %.o
 	$(LD) $< -o $@
 
+OBJS=main.o
+
 firmware.elf: $(OBJS)
 	$(LD) -o $@ $^ 
+
 hello.txt:
 	echo "hello world!" > hello.txt
 
