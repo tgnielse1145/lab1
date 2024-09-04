@@ -3,7 +3,7 @@ CC=$(PICO_TOOLCHAIN_PATH)/bin/arm-none-eabi-gcc
 AS=$(PICO_TOOLCHAIN_PATH)/bin/arm-none-eabi-as
 LD=$(PICO_TOOLCHAIN_PATH)/bin/arm-none-eabi-ld
 
-SRC=main.c feature.c
+SRC=main.c second.c
 OBJS=$(patsubst %.c,%.o,$(SRC))
 
 .PHONY: clean all
