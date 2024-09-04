@@ -5,7 +5,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
   steps:
-    - name: clean 
+    - name: clean workspace
       run: |
         echo "Cleaning up previous run"
         rm -rf "${{ github.workspace }}"
