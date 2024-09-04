@@ -11,26 +11,33 @@ jobs:
             rm -rf "${{ github.workspace }}"
             mkdir -p "${{ github.workspace }}"
       
-      - name: Checkout our repo
-        uses: actions/checkout@v3
+      - name: Install GCC
+        id: arm-none-eabi-gcc-action
+        uses: carlosperate/arm-none-eabi-gcc-action@v1
+        with:
+          release: '13.2.Rel1'
+      
+    
+      - uses: actions/checkout@v3
         with:
           path: ${{github.workspace}}/source
 
 
-      - name: Checkout pico-sdk/master
-        uses: actions/checkout@v2
-        with:
-            repository: raspberrypi/pico-sdk
-            ref: master
-            path: pico-sdk
+     # - name: Checkout pico-sdk/master
+     #   uses: actions/checkout@v2
+       # with:
+        #    repository: raspberrypi/pico-sdk
+         #  ref: master
+         #   path: pico-sdk
 
-      - name: Checkout pico-sdk submodules
-        working-directory: ${{github.workspace}}/pico-sdk
-        run: git submodule update --init
+     # - name: Checkout pico-sdk submodules
+     #   working-directory: ${{github.workspace}}/pico-sdk
+      #  run: git submodule update --init
 
       - name: Say hello
         working-directory: ${{github.workspace}}
         run: |
+            ls
             test ! -f hello.txt
             test ! -f main.o
             test ! -f main.i
