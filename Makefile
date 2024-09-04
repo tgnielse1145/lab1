@@ -10,13 +10,20 @@ OBJCOPY=$(PICO_TOOLCHAIN_PATH)/bin/arm-none-eabi-objcopy
 SRC=main.c second.c
 OBJS=$(patsubst %.c,%.o,$(SRC))
 
+.PHONY: clean all
+
 all: firmware.elf
 
-clean:
-	rm -f *.i *.s *.o *.elf *.img
+firmware.elf: $(OBJS)
+	$(LD) -o $@ $^
+#clean:
+#	rm -f *.i *.s *.o *.elf *.img
 
 #clean:
 #	rm -f main.i hello.txt
+
+#main.i: main.c
+#	$(CPP) main.c > main.i
 
 #main.s: main.i
 #	$(CC) -S main.i
@@ -39,18 +46,15 @@ hello.txt:
 %.elf: %.o
 	$(LD) $< -o $@
 
-OBJS=main.o
+#OBJS=main.o
 
-#main.i: main.c
-#	$(CPP) main.c > main.i
-
-firmware.elf: $(OBJS)
-	$(LD) -o $@ $^
+#firmware.elf: $(OBJS)
+#	$(LD) -o $@ $^
 
 %.img: %.elf
 	$(OBJCOPY) $< -O binary $@
 
-#clean:
-#	rm -f main.i hello.txt
+clean:
+	rm -f main.i hello.txt
 
-.PHONY: all clean
+#.PHONY: all clean
