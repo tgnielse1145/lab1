@@ -44,7 +44,7 @@ firmware.elf: $(OBJS)
 	$(AS) $< -o $@
 
 #%.elf: %.o
-	#$(LD) $< -o $@
+#	#$(LD) $< -o $@
 
 #OBJS=main.o
 
@@ -60,6 +60,6 @@ hello.txt:
 #clean:
 #	rm -f main.i hello.txt
 clean:
-	rm -f *.i *.s *.o *.elf *.img
+	rm -f *.i *.s *.o hello.txt *.elf *.img
 
 #.PHONY: all clean
