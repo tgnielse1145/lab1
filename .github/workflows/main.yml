@@ -4,12 +4,12 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
-  steps:
-    - name: clean workspace
-      run: |
-        echo "Cleaning up previous run"
-        rm -rf "${{ github.workspace }}"
-        mkdir -p "${{ github.workspace }}"
+    steps:
+      - name: Clean workspace
+        run: |
+          echo "Cleaning up previous run"
+          rm -rf "${{ github.workspace }}"
+          mkdir -p "${{ github.workspace }}"
 
     - name: Checkout pico-sdk/develop
       uses: actions/checkout@v2
