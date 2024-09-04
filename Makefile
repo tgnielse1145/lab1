@@ -15,7 +15,7 @@ OBJS=$(patsubst %.c,%.o,$(SRC))
 all: firmware.elf
 
 firmware.elf: $(OBJS)
-	$(LD) -o $@ $^
+	$(LD) -o $@ $^ 
 #clean:
 #	rm -f *.i *.s *.o *.elf *.img
 
