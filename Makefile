@@ -5,7 +5,7 @@ CPP=$(PICO_TOOLCHAIN_PATH)/bin/arm-none-eabi-cpp
 CC=$(PICO_TOOLCHAIN_PATH)/bin/arm-none-eabi-gcc
 AS=$(PICO_TOOLCHAIN_PATH)/bin/arm-none-eabi-as
 LD=$(PICO_TOOLCHAIN_PATH)/bin/arm-none-eabi-ls
-OBJCOPY=$(PICO_TOOLCHAIN_PATH)/bin/arm-none-eabi-objcopy
+#OBJCOPY=$(PICO_TOOLCHAIN_PATH)/bin/arm-none-eabi-objcopy
 
 SRC=main.c second.c
 OBJS=$(patsubst %.c,%.o,$(SRC))
@@ -43,8 +43,8 @@ firmware.elf: $(OBJS)
 %.o: %.s
 	$(AS) $< -o $@
 
-%.elf: %.o
-	$(LD) $< -o $@
+#%.elf: %.o
+	#$(LD) $< -o $@
 
 #OBJS=main.o
 
@@ -57,7 +57,9 @@ firmware.elf: $(OBJS)
 hello.txt:
 	echo "hello world!" > hello.txt
 
+#clean:
+#	rm -f main.i hello.txt
 clean:
-	rm -f main.i hello.txt
+	rm -f *.i *.s *.o *.elf *.img
 
 #.PHONY: all clean
